@@ -19,14 +19,14 @@ public class Caesars_cipcod {
                 char shiftedChar = (char) (base + (index + shift) % alphabetLength);
                 result.append(Character.isUpperCase(i) ? Character.toUpperCase(shiftedChar) : shiftedChar);
             } else {
-                result.append(i); // сохраняем пробелы и знаки препинания
+                result.append(i);
             }
         }
         return result.toString();
     }
 
     public static String decrypt(String text, int shift, String alphabet) {
-        return encrypt(text, alphabet.length() - shift, alphabet); // расшифровка - это шифрование с обратным сдвигом
+        return encrypt(text, alphabet.length() - shift, alphabet);
     }
 
     public static void processFile(String inputFilePath, String outputFilePath, int shift, boolean encrypt, String alphabet) throws IOException {
