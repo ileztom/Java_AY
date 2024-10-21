@@ -36,9 +36,9 @@ public class Vigeneres_cipcod {
         for (char i : ciphertext.toCharArray()) {
             if (Character.isLetter(i)) {
                 char upperChar = Character.toUpperCase(i);
-                int shift = key.charAt(keyIndex % keyLength) - 'A'; // Определяем сдвиг по ключу
+                int shift = key.charAt(keyIndex % keyLength) - 'A';
                 int index = upperChar - 'A';
-                char shiftedChar = (char) ('A' + (index - shift + 26) % 26); // Обратный сдвиг
+                char shiftedChar = (char) ('A' + (index - shift + 26) % 26);
                 result.append(shiftedChar);
                 keyIndex++;
             } else {
