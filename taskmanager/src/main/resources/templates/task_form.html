@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Задача</title>
+</head>
+<body>
+<h1 th:text="${task.id == null} ? 'Создать задачу' : 'Редактировать задачу'"></h1>
+
+<form th:action="@{/task/save}" th:object="${task}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <p>Название: <input type="text" th:field="*{title}" required/></p>
+    <p>Описание: <textarea th:field="*{description}"></textarea></p>
+    <p><input type="checkbox" th:field="*{completed}"/> Выполнено</p>
+    <p><button type="submit">Сохранить</button></p>
+</form>
+
+<a href="/">Назад</a>
+</body>
+</html>

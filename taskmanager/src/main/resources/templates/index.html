@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Задачи</title>
+</head>
+<body>
+<h1>Список задач</h1>
+
+<a href="/task/new">Создать задачу</a>
+
+<table border="1">
+    <tr>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>Статус</th>
+        <th>Действия</th>
+    </tr>
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.title}"></td>
+        <td th:text="${task.description}"></td>
+        <td th:text="${task.completed ? '✔ Выполнено' : '✖ Не выполнено'}"></td>
+        <td>
+            <a th:href="@{/task/edit/{id}(id=${task.id})}">Редактировать</a>
+            |
+            <a th:href="@{/task/delete/{id}(id=${task.id})}">Удалить</a>
+            |
+            <a th:href="@{/task/toggle/{id}(id=${task.id})}">Сменить статус</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
