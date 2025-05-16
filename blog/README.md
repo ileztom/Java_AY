@@ -14,7 +14,7 @@
 ## ⚙️ Установка и запуск
 
 ```bash
-git clone https://github.com/ileztom/Java_AY/tree/main/simpleblog.git
+git clone https://github.com/ileztom/Java_AY/tree/main/blog.git
 cd simpleblog
 ./mvnw spring-boot:run
 ```
