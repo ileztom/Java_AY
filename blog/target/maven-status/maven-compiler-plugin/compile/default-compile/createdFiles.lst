@@ -1,0 +1,4 @@
+com\example\blog\service\PostService.class
+com\example\blog\controllers\PostController.class
+com\example\blog\BlogApplication.class
+com\example\blog\model\Post.class
