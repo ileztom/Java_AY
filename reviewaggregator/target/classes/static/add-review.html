@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Review</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        form { display: flex; flex-direction: column; max-width: 400px; margin: auto; }
+        input, textarea, select { margin: 10px 0; }
+    </style>
+</head>
+<body>
+<h1>Add Review</h1>
+<form id="reviewForm">
+    <input type="text" id="name" placeholder="Name" required>
+    <textarea id="description" placeholder="Description" required></textarea>
+    <select id="rating" required>
+        <option value="1">1 Star</option>
+        <option value="2">2 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="5">5 Stars</option>
+    </select>
+    <textarea id="recommendation" placeholder="Recommendation" required></textarea>
+    <button type="submit">Submit</button>
+<!--    <button onclick="window.location.href='reviews.html?category=' + getCategory()">Back to home</button>-->
+</form>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category');
+
+    document.getElementById('reviewForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const review = {
+            name: document.getElementById('name').value,
+            description: document.getElementById('description').value,
+            rating: parseInt(document.getElementById('rating').value),
+            recommendation: document.getElementById('recommendation').value,
+            category: category
+        };
+
+        fetch('/api/reviews', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(review)
+        }).then(() => window.location.href = `reviews.html?category=${category}`);
+    });
+</script>
+</body>
+</html>

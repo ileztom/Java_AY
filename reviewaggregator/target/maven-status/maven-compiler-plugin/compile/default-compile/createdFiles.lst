@@ -1,0 +1,6 @@
+com\example\reviewaggregator\model\Review.class
+com\example\reviewaggregator\ReviewaggregatorApplication.class
+com\example\reviewaggregator\repository\InMemoryReviewRepository.class
+com\example\reviewaggregator\controller\ReviewController.class
+com\example\reviewaggregator\service\ReviewService.class
+com\example\reviewaggregator\model\Category.class

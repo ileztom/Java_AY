@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .review { margin: 10px; padding: 10px; border: 1px solid #ccc; }
+        .stars { color: gold; }
+    </style>
+</head>
+<body>
+<h1>Reviews</h1>
+<button onclick="window.location.href='add-review.html?category=' + getCategory()">Add Review</button>
+<button onclick="window.location.href='index.html'">Back to home</button>
+<div id="reviews"></div>
+
+<script>
+    function getCategory() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('category');
+    }
+
+    fetch(`/api/reviews/${getCategory()}`)
+        .then(response => response.json())
+        .then(reviews => {
+            const reviewsDiv = document.getElementById('reviews');
+            reviews.forEach(review => {
+                const reviewDiv = document.createElement('div');
+                reviewDiv.className = 'review';
+                reviewDiv.innerHTML = `
+                        <h3>${review.name}</h3>
+                        <p>${review.description}</p>
+                        <p class="stars">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</p>
+                        <p>${review.recommendation}</p>
+                        <button onclick="window.location.href='edit-review.html?id=${review.id}&category=${getCategory()}'">Edit</button>
+                        <button onclick="deleteReview(${review.id})">Delete</button>
+                    `;
+                reviewsDiv.appendChild(reviewDiv);
+            });
+        });
+
+    function deleteReview(id) {
+        fetch(`/api/reviews/${id}`, { method: 'DELETE' })
+            .then(() => window.location.reload());
+    }
+</script>
+</body>
+</html>
